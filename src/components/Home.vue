@@ -24,8 +24,23 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
-      this.$router.push("login");
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.$swal.fire("Success!", "Success Logout.", "success");
+            localStorage.removeItem("token");
+            this.$router.push("login");
+          }
+        });
     },
   },
 };

@@ -74,10 +74,21 @@ export default {
         this.user.password === "askar"
       ) {
         localStorage.setItem("token", "AsJhjdsh");
-        // this.isLoggedIn = true;
+        this.$swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You are logged in",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.$router.push("home");
       } else {
-        this.error = true;
+        // this.error = true;
+        this.$swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       }
     },
   },
